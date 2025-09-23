@@ -1,0 +1,174 @@
+2025-09-23 23:28:42,760 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:28:42,761 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:28:42,895 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:28:42,897 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:28:43,754 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:28:47,037 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:28:47,042 - telegram_bot - INFO - Apify connection successful, found 101 items
+2025-09-23 23:29:36,276 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:29:36,277 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:29:36,432 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:29:36,433 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:29:37,259 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:29:38,662 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:29:38,665 - telegram_bot - INFO - Apify connection successful, found 101 items
+2025-09-23 23:29:38,778 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:29:38,779 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:29:38,780 - telegram_bot - INFO - Starting news polling with 300 seconds interval
+2025-09-23 23:29:38,884 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:29:38,885 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:29:38,885 - telegram_bot - INFO - Checking for new news items...
+2025-09-23 23:29:39,709 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:29:41,162 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:29:41,166 - telegram_bot - INFO - Found 5 new items
+2025-09-23 23:32:11,508 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:32:12,778 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:32:30,957 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:32:32,176 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:32:32,431 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:32,433 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:32,434 - telegram_bot - INFO - Sent news item: Nvidia Commits $100 Billion to OpenAI in Historic AI Infrastructure Deal—Stock Pops
+2025-09-23 23:32:33,652 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:33,653 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:33,654 - telegram_bot - INFO - Sent news item: Nvidia Commits $100 Billion to OpenAI in Historic AI Infrastructure Deal—Stock Pops
+2025-09-23 23:32:34,775 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:34,776 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:34,776 - telegram_bot - INFO - Sent news item: Can AI Help Invent the Next Superconductor? MIT and Samsung Researchers Think So
+2025-09-23 23:32:54,325 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:32:54,326 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:32:54,445 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:54,446 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:55,236 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:32:56,752 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:32:56,759 - telegram_bot - INFO - Apify connection successful, found 101 items
+2025-09-23 23:32:56,882 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:56,883 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:56,887 - telegram_bot - INFO - Starting news polling with 300 seconds interval
+2025-09-23 23:32:57,005 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:57,009 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:57,009 - telegram_bot - INFO - Checking for new news items...
+2025-09-23 23:32:57,911 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:32:59,192 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:32:59,197 - telegram_bot - INFO - Found 5 new items
+2025-09-23 23:32:59,324 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:32:59,326 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:32:59,326 - telegram_bot - INFO - Sent news item: AI Is on the Verge of Its Biggest Upgrade Yet: Emotional Intelligence
+2025-09-23 23:33:00,543 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:33:00,631 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:33:00,632 - telegram_bot - INFO - Sent news item: AI Will Be Used to 'Reconstruct' Lost Orson Welles Film 'The Magnificent Ambersons'
+2025-09-23 23:33:01,825 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:33:01,827 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:33:01,827 - telegram_bot - INFO - Sent news item: Monero '51% Attackers' Qubic Release AI Model—But It Can't Do Basic Math Yet
+2025-09-23 23:33:02,956 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:33:02,957 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:33:02,957 - telegram_bot - INFO - Sent news item: 'CopyPasta' Attack Shows How Prompt Injections Could Infect AI at Scale
+2025-09-23 23:33:04,103 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:33:04,104 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:33:04,104 - telegram_bot - INFO - Sent news item: Brian Armstrong Wants Half of Coinbase Code To Be AI-Written By October
+2025-09-23 23:33:05,107 - telegram_bot - INFO - ✅ Відправлено 5 нових новин в канал
+2025-09-23 23:36:44,006 - state_manager - INFO - Файл стану не знайдено, створюємо новий
+2025-09-23 23:36:44,914 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:36:46,258 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:36:46,673 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:36:46,676 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:36:46,679 - telegram_bot - INFO - Sent news item: Nvidia Commits $100 Billion to OpenAI in Historic AI Infrastructure Deal—Stock Pops
+2025-09-23 23:37:23,960 - state_manager - INFO - Завантажено стан: 1 оброблених елементів
+2025-09-23 23:37:24,138 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:37:24,139 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:37:24,252 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:24,253 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:25,086 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:37:26,364 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:37:26,367 - telegram_bot - INFO - Apify connection successful, found 101 items
+2025-09-23 23:37:26,472 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:26,473 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:26,475 - telegram_bot - INFO - Starting news polling with 300 seconds interval
+2025-09-23 23:37:26,590 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:26,591 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:26,591 - telegram_bot - INFO - Starting polling cycle #1
+2025-09-23 23:37:26,592 - telegram_bot - INFO - Checking for new news items...
+2025-09-23 23:37:27,367 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:37:28,787 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:37:28,793 - apify_client - INFO - Повертаємо 5 змішаних елементів (старі + нові)
+2025-09-23 23:37:28,793 - telegram_bot - INFO - Found 5 змішаних (старі + нові) items
+2025-09-23 23:37:28,913 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:28,915 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:28,916 - telegram_bot - INFO - Sent news item: 'Some Studios Won’t Survive' as AI Takes Over Gaming, Says Google Cloud Exec
+2025-09-23 23:37:30,048 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:30,049 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:30,052 - telegram_bot - INFO - Sent news item: Perplexity Comet Flaw Exposed User Data to Attackers, Brave Reports
+2025-09-23 23:37:31,191 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:31,194 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:31,195 - telegram_bot - INFO - Sent news item: DeepSeek v3.1 Quietly Crushes OpenAI's Open-Source Comeback
+2025-09-23 23:37:32,312 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:32,314 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:32,315 - telegram_bot - INFO - Sent news item: AI Can Be Hacked With a Simple 'Typo' in Its Memory, New Study Claims
+2025-09-23 23:37:33,449 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:37:33,451 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:37:33,455 - telegram_bot - INFO - Sent news item: Nvidia Commits $100 Billion to OpenAI in Historic AI Infrastructure Deal—Stock Pops
+2025-09-23 23:37:34,459 - telegram_bot - INFO - ✅ Відправлено 5 змішаних (старі + нові) новин
+📊 Всього відправлено: 6
+2025-09-23 23:37:34,461 - telegram_bot - INFO - Cycle #1 completed, sleeping for 300 seconds
+2025-09-23 23:40:33,401 - state_manager - INFO - Завантажено стан: 6 оброблених елементів
+2025-09-23 23:40:33,589 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:40:33,590 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:40:33,696 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:33,697 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:34,482 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:40:35,712 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:40:35,737 - telegram_bot - INFO - Apify connection successful, found 101 items
+2025-09-23 23:40:35,856 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:35,857 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:35,859 - telegram_bot - INFO - Starting news polling with 300 seconds interval
+2025-09-23 23:40:35,974 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:35,976 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:35,976 - telegram_bot - INFO - Starting polling cycle #1
+2025-09-23 23:40:35,976 - telegram_bot - INFO - Checking for new news items...
+2025-09-23 23:40:36,781 - apify_client - INFO - Run status: SUCCEEDED
+2025-09-23 23:40:38,022 - apify_client - INFO - Retrieved 101 items from dataset
+2025-09-23 23:40:38,025 - apify_client - INFO - Повертаємо 5 змішаних елементів (старі + нові)
+2025-09-23 23:40:38,025 - telegram_bot - INFO - Found 5 змішаних (старі + нові) items
+2025-09-23 23:40:38,195 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:38,198 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:38,200 - telegram_bot - INFO - Sent news item: 'Some Studios Won’t Survive' as AI Takes Over Gaming, Says Google Cloud Exec
+2025-09-23 23:40:39,325 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:39,326 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:39,327 - telegram_bot - INFO - Sent news item: Perplexity Comet Flaw Exposed User Data to Attackers, Brave Reports
+2025-09-23 23:40:40,464 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:40,465 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:40,466 - telegram_bot - INFO - Sent news item: DeepSeek v3.1 Quietly Crushes OpenAI's Open-Source Comeback
+2025-09-23 23:40:41,588 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:41,589 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:41,591 - telegram_bot - INFO - Sent news item: AI Can Be Hacked With a Simple 'Typo' in Its Memory, New Study Claims
+2025-09-23 23:40:42,709 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:40:42,710 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:40:42,711 - telegram_bot - INFO - Sent news item: Nvidia Commits $100 Billion to OpenAI in Historic AI Infrastructure Deal—Stock Pops
+2025-09-23 23:40:43,718 - telegram_bot - INFO - ✅ Відправлено 5 змішаних (старі + нові) новин
+📊 Всього відправлено: 11
+2025-09-23 23:40:43,719 - telegram_bot - INFO - Cycle #1 completed, sleeping for 300 seconds
+2025-09-23 23:45:39,460 - state_manager - INFO - Завантажено стан: 11 оброблених елементів
+2025-09-23 23:45:39,748 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:45:39,749 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:45:39,902 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:45:39,903 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:45:40,763 - apify_client - ERROR - Error fetching data from Apify: 404 Client Error: Not Found for url: https://api.apify.com/v2/actor-runs/WbRNkZAzxxezmDFuz?token=apify_api_a9ha2N9yqeSokl01L0y1bz90vADoQ21sZPnF
+2025-09-23 23:45:40,764 - telegram_bot - WARNING - Apify connection failed or no data found
+2025-09-23 23:45:40,864 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:45:40,865 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:46:22,503 - state_manager - INFO - Завантажено стан: 11 оброблених елементів
+2025-09-23 23:46:22,676 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/getMe "HTTP/1.1 200 OK"
+2025-09-23 23:46:22,677 - telegram_bot - INFO - Telegram bot connected: @cryptonewaiYambot
+2025-09-23 23:46:22,783 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:46:22,784 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:46:23,618 - apify_client - ERROR - Error fetching data from Apify: 404 Client Error: Not Found for url: https://api.apify.com/v2/actor-runs/WbRNkZAzxxezmDFuz?token=apify_api_a9ha2N9yqeSokl01L0y1bz90vADoQ21sZPnF
+2025-09-23 23:46:23,620 - telegram_bot - WARNING - Apify connection failed or no data found
+2025-09-23 23:46:23,719 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:46:23,720 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:46:23,721 - telegram_bot - INFO - Starting news polling with 300 seconds interval
+2025-09-23 23:46:23,826 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8450134839:AAGGPZKg7qvZvA1ADLLXIp5zZiCIyom0CUM/sendMessage "HTTP/1.1 200 OK"
+2025-09-23 23:46:23,827 - telegram_bot - INFO - Message sent to channel -1002931683110
+2025-09-23 23:46:23,827 - telegram_bot - INFO - Starting polling cycle #1
+2025-09-23 23:46:23,827 - telegram_bot - INFO - Checking for new news items...
+2025-09-23 23:46:24,568 - apify_client - ERROR - Error fetching data from Apify: 404 Client Error: Not Found for url: https://api.apify.com/v2/actor-runs/WbRNkZAzxxezmDFuz?token=apify_api_a9ha2N9yqeSokl01L0y1bz90vADoQ21sZPnF
+2025-09-23 23:46:24,570 - telegram_bot - INFO - No new items found
+2025-09-23 23:46:24,571 - telegram_bot - INFO - Cycle #1 completed, sleeping for 300 seconds
