@@ -14,8 +14,14 @@ import sqlite3
 import aiosqlite
 from pathlib import Path
 
-# Простий логгінг
+# Простий логгінг з UTF-8
 import logging
+import io
+
+# Налаштування UTF-8 для Windows
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -40,8 +46,8 @@ class AutonomousNewsBot:
         self.telegram_client = httpx.AsyncClient(timeout=30.0)
         
         # Gemini API для форматування постів
-        self.gemini_api_key = "AIzaSyBcSiR1mVXHRFCfBQJNHWP-Mv2EW7hOVr8"
-        self.use_ai_formatting = True  # Можна вимкнути для швидшої роботи
+        self.gemini_api_key = self.settings.gemini_api_key
+        self.use_ai_formatting = self.settings.use_ai_formatting
         
         # База даних для збереження відправлених статей
         self.db_path = "sent_articles.db"
@@ -59,9 +65,12 @@ class AutonomousNewsBot:
         class Settings:
             def __init__(self):
                 self.apify_token = os.getenv("APIFY_TOKEN")
-                self.apify_actor = os.getenv("APIFY_ACTOR", "apipi~crypto-news-scraper")
+                self.apify_actor = os.getenv("APIFY_ACTOR", "dadhalfdev~cointelegraph-scraper-crypto-news")
                 self.telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
                 self.telegram_channel = os.getenv("TELEGRAM_CHANNEL")
+                self.gemini_api_key = os.getenv("GEMINI_API_KEY", "AIzaSyBcSiR1mVXHRFCfBQJNHWP-Mv2EW7hOVr8")
+                self.use_ai_formatting = os.getenv("USE_AI_FORMATTING", "true").lower() == "true"
+                self.min_article_rating = int(os.getenv("MIN_ARTICLE_RATING", "8"))
                 
                 if not self.apify_token:
                     raise ValueError("APIFY_TOKEN не знайдено в .env файлі")
@@ -175,14 +184,14 @@ class AutonomousNewsBot:
         """Отримує новини з Apify."""
         url = f"https://api.apify.com/v2/acts/{self.settings.apify_actor}/run-sync-get-dataset-items"
         
+        # Налаштування для Cointelegraph актора
         payload = {
-            "search_query": "bitcoin,ethereum,crypto,cryptocurrency,blockchain,defi,nft,web3,trading,market",
-            "limit": 20  # Більше статей для кращого вибору
+            "number_of_articles": 20  # Параметр для dadhalfdev~cointelegraph-scraper-crypto-news
         }
         
         params = {
             "token": self.settings.apify_token,
-            "timeout": 45,
+            "timeout": 60,  # Збільшено для нового актора
             "format": "json"
         }
         
@@ -202,39 +211,35 @@ class AutonomousNewsBot:
             logger.error(f"❌ Помилка отримання новин: {e}")
             return []
     
-    async def format_post_with_ai(self, article):
-        """Форматує пост через Gemini AI."""
+    async def rate_article_importance(self, article):
+        """Оцінює важливість статті через AI (0-10)."""
         try:
             title = article.get("title", "")
             description = article.get("description", "")
-            source = article.get("news_provider") or article.get("source", "")
             
-            # Створюємо промпт для Gemini
             prompt = f"""
-Rewrite this crypto news for a professional Telegram channel:
+Analyze this crypto news and rate its importance/quality for a crypto news channel audience.
 
 Title: {title}
 Description: {description}
-Source: {source}
 
-Requirements:
-- Write in English
-- Professional, natural tone (no AI-like language)
-- Detailed and informative (100-200 words)
-- Well-structured with clear paragraphs
-- No emojis or flashy symbols
-- Include key details and context
-- If source is unknown, don't mention it
-- Write like a professional financial journalist
+Rate from 0 to 10 based on:
+- Importance for crypto investors/traders (40%)
+- Uniqueness and exclusivity (20%)
+- Relevance and timeliness (20%)
+- Impact on market/industry (20%)
 
-Format:
-[Clear headline]
+High rating (8-10): Major announcements, market-moving news, breaking stories, significant partnerships, regulations
+Medium rating (5-7): Regular updates, minor partnerships, price movements, general industry news
+Low rating (0-4): Opinion pieces, repetitive news, minor updates, promotional content
 
-[Detailed explanation of the news with context and implications]
+Respond ONLY with a number from 0 to 10, nothing else.
+Examples:
+- "Bitcoin ETF approved by SEC" → 10
+- "Bitcoin price reaches $50,000" → 8
+- "New altcoin launches on small exchange" → 3
 
-[Analysis or market impact if relevant]
-
-Make it sound completely natural and professional, like it was written by a human financial journalist."""
+Your rating (just the number):"""
             
             url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
             
@@ -251,7 +256,92 @@ Make it sound completely natural and professional, like it was written by a huma
                 "X-goog-api-key": self.gemini_api_key
             }
             
-            logger.info("🤖 Форматую пост через Gemini AI...")
+            response = await self.apify_client.post(url, json=payload, headers=headers)
+            
+            if response.status_code == 200:
+                result = response.json()
+                if "candidates" in result and len(result["candidates"]) > 0:
+                    candidate = result["candidates"][0]
+                    if "content" in candidate and "parts" in candidate["content"]:
+                        rating_text = candidate["content"]["parts"][0].get("text", "").strip()
+                        # Витягуємо число
+                        import re
+                        match = re.search(r'\d+', rating_text)
+                        if match:
+                            rating = int(match.group())
+                            rating = max(0, min(10, rating))  # Обмежуємо 0-10
+                            return rating
+            
+            return 5  # Дефолтна оцінка якщо не вдалося
+            
+        except Exception as e:
+            logger.error(f"❌ Помилка оцінювання статті: {e}")
+            return 5  # Дефолтна оцінка при помилці
+    
+    async def format_post_with_ai(self, article):
+        """Форматує пост через Gemini AI - ПОВНА стаття без посилань."""
+        try:
+            title = article.get("title", "")
+            description = article.get("description", "")
+            content = article.get("content", "") or article.get("text", "")
+            source = article.get("news_provider") or article.get("source", "")
+            
+            # Об'єднуємо всю доступну інформацію
+            full_text = f"{title}\n\n{description}"
+            if content and len(content) > len(description):
+                full_text = f"{title}\n\n{content}"
+            
+            # Створюємо промпт для Gemini
+            prompt = f"""
+Rewrite this crypto news article as a COMPLETE, DETAILED post for Telegram channel (maximum 4000 characters).
+
+Title: {title}
+Description: {description}
+Full Content: {content if content else "Not available - use description"}
+Source: {source}
+
+Requirements:
+- Write in UKRAINIAN language (українською мовою)
+- Professional, natural tone (no AI-like language)
+- FULL, COMPREHENSIVE article (300-800 words) - NO LINKS needed
+- Include ALL important details, facts, numbers, quotes
+- Well-structured with clear paragraphs
+- 2-3 relevant emojis at section starts only
+- Explain context and implications thoroughly
+- If source is known, mention it naturally
+- Write like a professional Ukrainian financial journalist
+- NO call-to-action to read more elsewhere
+- The reader should get ALL information from THIS post
+
+Format:
+🔥 [Engaging headline]
+
+[Complete detailed explanation of the news with all facts and context]
+
+[Background information if relevant]
+
+[Market impact and analysis]
+
+[Conclusion or future outlook]
+
+📰 Джерело: {source if source else ""}
+
+Make it complete and self-contained. No external links needed. The post IS the full article."""
+            
+            url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+            
+            payload = {
+                "contents": [{
+                    "parts": [{
+                        "text": prompt
+                    }]
+                }]
+            }
+            
+            headers = {
+                "Content-Type": "application/json",
+                "X-goog-api-key": self.gemini_api_key
+            }
             
             response = await self.apify_client.post(url, json=payload, headers=headers)
             
@@ -261,11 +351,13 @@ Make it sound completely natural and professional, like it was written by a huma
                     candidate = result["candidates"][0]
                     if "content" in candidate and "parts" in candidate["content"]:
                         formatted_text = candidate["content"]["parts"][0].get("text", "")
-                        if formatted_text and len(formatted_text.strip()) > 50:
-                            logger.info("✅ Пост відформатовано через Gemini AI")
+                        if formatted_text and len(formatted_text.strip()) > 100:
+                            # Обмежуємо до ліміту Telegram (4096 символів)
+                            if len(formatted_text) > 4000:
+                                formatted_text = formatted_text[:3990] + "..."
                             return formatted_text.strip()
             
-            logger.info("⚠️ Gemini AI форматування не вдалося, використовую стандартний формат")
+            logger.warning("⚠️ Gemini AI форматування не вдалося")
             return None
             
         except Exception as e:
@@ -306,58 +398,47 @@ Make it sound completely natural and professional, like it was written by a huma
         return message
     
     def create_keyboard(self, url):
-        """Створює клавіатуру з кнопкою."""
-        if not url:
-            return None
-        return {
-            "inline_keyboard": [[
-                {"text": "📖 Читати повністю", "url": url}
-            ]]
-        }
+        """Створює клавіатуру з кнопкою (опціонально, якщо потрібно джерело)."""
+        # Більше не використовується, але залишаємо для сумісності
+        return None
     
     async def send_to_telegram(self, message, keyboard=None, image_url=None):
-        """Відправляє повідомлення в Telegram."""
+        """Відправляє повідомлення в Telegram (повні статті без посилань)."""
         url = f"https://api.telegram.org/bot{self.settings.telegram_bot_token}"
         
         try:
-            # Перевіряємо довжину повідомлення
-            if len(message) > 4000:
-                message = message[:3997] + "..."
+            # Перевіряємо довжину (Telegram ліміт 4096)
+            if len(message) > 4096:
+                message = message[:4090] + "..."
             
-            # Спробуємо з картинкою
-            if image_url:
+            # Для повних статей НЕ використовуємо фото (щоб не обмежувати текст)
+            # Якщо текст довгий, краще без фото
+            
+            if image_url and len(message) <= 1000:
+                # Тільки для коротких повідомлень можна з фото
                 photo_url = f"{url}/sendPhoto"
-                
-                # Для фото caption має бути коротшим
-                caption = message
-                if len(caption) > 1000:
-                    caption = caption[:997] + "..."
                 
                 data = {
                     "chat_id": self.settings.telegram_channel,
                     "photo": image_url,
-                    "caption": caption,
+                    "caption": message,
                     "parse_mode": "HTML"
                 }
-                if keyboard:
-                    data["reply_markup"] = json.dumps(keyboard)
                 
                 response = await self.telegram_client.post(photo_url, json=data)
                 if response.status_code == 200:
                     return True
                 else:
-                    logger.debug(f"Фото не відправилось: {response.status_code}")
+                    logger.debug(f"Фото не відправилось: {response.status_code}, відправляю без фото")
             
-            # Звичайне повідомлення
+            # Звичайне повідомлення (БЕЗ preview, БЕЗ кнопок)
             message_url = f"{url}/sendMessage"
             data = {
                 "chat_id": self.settings.telegram_channel,
                 "text": message,
                 "parse_mode": "HTML",
-                "disable_web_page_preview": False
+                "disable_web_page_preview": True  # Вимикаємо preview
             }
-            if keyboard:
-                data["reply_markup"] = json.dumps(keyboard)
             
             response = await self.telegram_client.post(message_url, json=data)
             return response.status_code == 200
@@ -367,7 +448,7 @@ Make it sound completely natural and professional, like it was written by a huma
             return False
     
     async def process_articles(self, articles):
-        """Обробляє та відправляє статті."""
+        """Обробляє та відправляє статті з оцінюванням важливості."""
         if not articles:
             return 0
         
@@ -382,26 +463,51 @@ Make it sound completely natural and professional, like it was written by a huma
             if not await self.is_article_sent(article_id):
                 new_articles.append((article, article_id))
             else:
-                logger.debug(f"⏭️ Пропускаю: стаття вже відправлена")
+                logger.debug("⏭️ Пропускаю: стаття вже відправлена")
         
         logger.info(f"📝 Нових статей: {len(new_articles)} з {len(articles)}")
         
-        # Відправляємо нові статті
-        for article, article_id in new_articles[:5]:  # Максимум 5 за раз
+        if not new_articles:
+            return 0
+        
+        # Оцінюємо важливість кожної статті через AI
+        rated_articles = []
+        for article, article_id in new_articles:
+            try:
+                rating = await self.rate_article_importance(article)
+                title_short = article.get("title", "")[:60]
+                logger.info(f"🎯 Оцінка {rating}/10: {title_short}")
+                
+                # Публікуємо тільки статті з достатнім рейтингом
+                if rating >= self.settings.min_article_rating:
+                    rated_articles.append((article, article_id, rating))
+                else:
+                    logger.info(f"⏭️ Пропускаю (рейтинг {rating} < {self.settings.min_article_rating})")
+                    
+                await asyncio.sleep(1)  # Затримка між оцінками
+                
+            except Exception as e:
+                logger.error(f"❌ Помилка оцінювання: {e}")
+        
+        # Сортуємо за рейтингом (найважливіші спочатку)
+        rated_articles.sort(key=lambda x: x[2], reverse=True)
+        
+        logger.info(f"✅ Відібрано {len(rated_articles)} статей для публікації (рейтинг >= {self.settings.min_article_rating})")
+        
+        # Відправляємо відібрані статті (максимум 3 за раз)
+        for article, article_id, rating in rated_articles[:3]:
             try:
                 ai_message = None
                 
-                # Пробуємо AI форматування тільки якщо увімкнено
+                # Форматуємо через AI
                 if self.use_ai_formatting:
                     try:
+                        logger.info(f"🤖 Форматую статтю (рейтинг {rating}/10)...")
                         ai_message = await self.format_post_with_ai(article)
                     except Exception as e:
                         logger.warning(f"⚠️ Gemini AI форматування не вдалося: {e}")
-                        self.use_ai_formatting = False  # Вимикаємо AI після помилки
-                        logger.info("🔧 Gemini AI форматування вимкнено через помилки")
                 
                 if ai_message:
-                    # Використовуємо AI форматований текст
                     message = ai_message
                 else:
                     # Fallback до стандартного форматування
@@ -409,30 +515,25 @@ Make it sound completely natural and professional, like it was written by a huma
                     if not message:
                         continue
                 
-                url = article.get("url", "")
-                keyboard = self.create_keyboard(url) if url else None
+                # Відправляємо БЕЗ кнопки (повна стаття в пості)
                 image_url = article.get("thumbnail_image") or article.get("imageUrl")
-                
-                success = await self.send_to_telegram(message, keyboard, image_url)
+                success = await self.send_to_telegram(message, keyboard=None, image_url=image_url)
                 
                 if success:
-                    # Позначаємо як відправлену в базі даних
+                    # Позначаємо як відправлену
                     title = article.get("title", "")
+                    url = article.get("url", "")
                     source = article.get("news_provider") or article.get("source", "")
                     await self.mark_article_sent(article_id, title, url, source)
                     
                     sent_count += 1
                     title_short = title[:50]
-                    
-                    if ai_message:
-                        logger.info(f"📤 Відправлено (Gemini AI): {title_short}...")
-                    else:
-                        logger.info(f"📤 Відправлено: {title_short}...")
+                    logger.info(f"📤 Опубліковано [{rating}/10]: {title_short}...")
                     
                     # Затримка між повідомленнями
-                    await asyncio.sleep(5)  # Збільшую затримку через AI обробку
+                    await asyncio.sleep(7)  # Більша затримка для повних статей
                 else:
-                    logger.warning(f"⚠️ Не вдалося відправити статтю")
+                    logger.warning("⚠️ Не вдалося відправити статтю")
                     
             except Exception as e:
                 logger.error(f"❌ Помилка обробки статті: {e}")
